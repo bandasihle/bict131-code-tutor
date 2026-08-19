@@ -1,0 +1,44 @@
+# Render blueprint for the BICT131 Tutor backend.
+#
+# Render reads this and pre-fills the service settings, so deploying is
+# "Apply" rather than retyping a form. Point Render at this repo and it will
+# find this file.
+#
+# The Groq key is deliberately NOT here. `sync: false` means "this service
+# needs this variable, prompt the human for it in the dashboard, never store
+# a value in the repo" — so the key stays out of git entirely.
+
+services:
+  - type: web
+    name: bict131-tutor-api
+    runtime: python
+    plan: free
+    rootDir: backend
+
+    buildCommand: pip install -r requirements.txt
+
+    # gunicorn imports the `app` object out of app.py and binds Render's own
+    # $PORT. The `if __name__ == "__main__"` block in app.py never runs here;
+    # it stays for local development only.
+    #
+    # --timeout 60 has to clear REQUEST_TIMEOUT (30s) in app.py plus the
+    # overhead of a cold Groq call, or gunicorn kills the worker before the
+    # tutor's own error handling can return a clean message to the student.
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 60
+
+    healthCheckPath: /health
+
+    envVars:
+      # Set in the Render dashboard. Never committed.
+      - key: GROQ_API_KEY
+        sync: false
+
+      # Comma-separated CORS allowlist. Set this to the deployed Vercel origin
+      # once the frontend is live — see Stage 3. Until then the backend falls
+      # back to http://localhost:5173 (app.py).
+      - key: ALLOWED_ORIGINS
+        sync: false
+
+      # Pin to the version the test suite was written and run against.
+      - key: PYTHON_VERSION
+        value: "3.11.9"

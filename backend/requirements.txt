@@ -1,0 +1,9 @@
+flask==3.1.0
+flask-cors==5.0.0
+requests==2.32.3
+python-dotenv==1.0.1
+
+# Production WSGI server, used by Render's startCommand (see render.yaml).
+# Local development still runs `python app.py` — gunicorn has no Windows
+# support, so do not expect `gunicorn app:app` to work on this machine.
+gunicorn==23.0.0

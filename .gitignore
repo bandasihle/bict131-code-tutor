@@ -1,0 +1,33 @@
+# Secrets — never commit these.
+# .env.* is a catch-all so .env.production / .env.render / anything a tool
+# invents later is ignored by default. The negations keep the two committed
+# templates, which contain names but never values.
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Machine-specific tool state (local absolute paths, per-machine approvals).
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-error.log*
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
