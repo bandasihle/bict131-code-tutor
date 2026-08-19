@@ -4,7 +4,7 @@ An AI-driven Socratic tutor for first-year programming students. The student pas
 buggy code and describes what's going wrong; the tutor replies with a guiding
 **question** rather than the fix.
 
-See [`CLAUDE.md`](CLAUDE.md) for the architecture and the core Socratic principle.
+See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the architecture and the core Socratic principle.
 
 ## Current state: vertical slice
 
