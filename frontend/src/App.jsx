@@ -109,7 +109,7 @@ export default function App() {
       <div className="mx-auto max-w-3xl px-6 py-10">
         <header className="mb-8">
           <h1 className="text-2xl font-semibold tracking-tight">
-            BICT131 Code Tutor
+            Python Code Tutor
           </h1>
           <p className="mt-1 text-sm text-slate-600">
             Paste your code and describe what&apos;s going wrong. The tutor asks a
