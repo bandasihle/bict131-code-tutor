@@ -140,7 +140,7 @@ Response:
 
 `attempt` is the number of tries the student has already made. The server decides
 what level of help that earns — the frontend cannot skip levels by lying about it.
-`level` is currently always `1` until the escalation logic lands.
+`level` is 1 on the first try, 2 after one or two tries, and 3 (a direct explanation with the fix) from the fourth try.
 
 Errors come back as `{ "error": "..." }` with a 4xx/5xx status.
 
