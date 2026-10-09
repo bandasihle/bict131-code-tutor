@@ -7,9 +7,6 @@
 !.env.example
 !.env.*.example
 
-# Machine-specific tool state (local absolute paths, per-machine approvals).
-.claude/settings.local.json
-
 # Python
 __pycache__/
 *.py[cod]
